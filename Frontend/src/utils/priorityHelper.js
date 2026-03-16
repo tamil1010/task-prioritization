@@ -2,25 +2,17 @@ export const getTopTasks = (tasks) => {
 
   const today = new Date()
 
-  const scored = tasks.map(task => {
-
+  // filter only valid future tasks
+  const validTasks = tasks.filter(task => {
     const deadline = new Date(task.deadline)
-
-    const diff =
-      (deadline - today) / (1000 * 60 * 60 * 24)
-
-    let score = 0
-
-    if (task.priority === "High") score += 5
-    if (task.priority === "Medium") score += 3
-
-    if (diff <= 1) score += 5
-    else if (diff <= 3) score += 3
-
-    return { ...task, score }
+    return deadline >= today
   })
 
-  scored.sort((a, b) => b.score - a.score)
+  // sort by nearest deadline
+  validTasks.sort((a, b) => {
+    return new Date(a.deadline) - new Date(b.deadline)
+  })
 
-  return scored.slice(0, 3)
+  // return top 3
+  return validTasks.slice(0, 3)
 }

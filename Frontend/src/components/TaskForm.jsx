@@ -10,17 +10,31 @@ const TaskForm = () => {
   const [priority, setPriority] = useState("Medium")
 
   const handleSubmit = (e) => {
+  e.preventDefault()
 
-    e.preventDefault()
-
-    addTask({
-      title,
-      deadline,
-      priority
-    })
-
-    setTitle("")
+  // check empty title
+  if (!title.trim()) {
+    toast.error("Task name cannot be empty")
+    return
   }
+
+  const today = new Date().toISOString().split("T")[0]
+
+  if (deadline < today) {
+    toast.error("Deadline must be today or a future date")
+    return
+  }
+
+  addTask({
+    title,
+    deadline,
+    priority,
+    createdAt: new Date()
+  })
+
+  setTitle("")
+  setDeadline("")
+}
 
   return (
 
@@ -30,18 +44,22 @@ const TaskForm = () => {
     >
 
       <input
-        className="border p-2 w-full mb-2"
-        placeholder="Task title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+  type="text"
+  placeholder="Task title"
+  className="border p-2 w-full mb-2"
+  value={title}
+  required
+  onChange={(e) => setTitle(e.target.value)}
+/>
 
       <input
-        type="date"
-        className="border p-2 w-full mb-2"
-        value={deadline}
-        onChange={(e) => setDeadline(e.target.value)}
-      />
+  type="date"
+  className="border p-2 w-full mb-2"
+  value={deadline}
+  min={new Date().toISOString().split("T")[0]}
+  max="2099-12-31"
+  onChange={(e) => setDeadline(e.target.value)}
+/>
 
       <select
         className="border p-2 w-full mb-3"
