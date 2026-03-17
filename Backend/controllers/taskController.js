@@ -46,12 +46,11 @@ exports.getTasks = async (req, res) => {
 }
 
 
-// 🔥 DELETE TASK (IMPROVED)
+// 🔥 DELETE TASK
 exports.deleteTask = async (req, res) => {
   try {
     const { id } = req.params
 
-    // check ID exists
     if (!id) {
       return res.status(400).json({
         message: "Task ID is required"
@@ -60,7 +59,6 @@ exports.deleteTask = async (req, res) => {
 
     const deletedTask = await Task.findByIdAndDelete(id)
 
-    // check task exists
     if (!deletedTask) {
       return res.status(404).json({
         message: "Task not found"
@@ -71,6 +69,25 @@ exports.deleteTask = async (req, res) => {
       message: "Task deleted successfully",
       deletedTask
     })
+
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+
+// 🔥 UPDATE TASK (MOVE OUTSIDE)
+exports.updateTask = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true }
+    )
+
+    res.status(200).json(updatedTask)
 
   } catch (error) {
     res.status(500).json({ message: error.message })

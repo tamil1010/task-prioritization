@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react"
-import { addTaskApi, getTasksApi, deleteTaskApi } from "../api/taskApi"
+import { addTaskApi, getTasksApi, deleteTaskApi,updateTaskApi } from "../api/taskApi"
 
 export const TaskContext = createContext()
 
@@ -31,8 +31,19 @@ export const TaskProvider = ({ children }) => {
     )
   }
 
+  // UPDATE TASK
+const updateTask = async (id, updatedData) => {
+  const updated = await updateTaskApi(id, updatedData)
+
+  setTasks((prev) =>
+    prev.map((task) =>
+      task._id === id ? updated : task
+    )
+  )
+}
+
   return (
-    <TaskContext.Provider value={{ tasks, addTask, deleteTask }}>
+    <TaskContext.Provider value={{ tasks, addTask, deleteTask,updateTask }}>
       {children}
     </TaskContext.Provider>
   )

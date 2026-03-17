@@ -19,3 +19,9 @@ export const deleteTaskApi = async (id) => {
   const res = await axios.delete(`${API}/delete/${id}`)
   return res.data
 }
+
+//Update Task
+export const updateTaskApi = async (id, data) => {
+  const res = await axios.put(`${API}/update/${id}`, data)
+  return res.data
+}

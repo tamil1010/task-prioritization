@@ -19,6 +19,12 @@ const taskSchema = new mongoose.Schema({
     default: "Medium"
   },
 
+  // 🔥 ADD THIS
+  completed: {
+    type: Boolean,
+    default: false
+  },
+
   createdAt: {
     type: Date,
     default: Date.now

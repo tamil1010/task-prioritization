@@ -24,17 +24,19 @@ const TaskForm = () => {
       return
     }
 
-    // 🔥 Combine date + time
-    const deadline = new Date(`${date}T${time}`)
+    // 🔥 Combine date + time properly
+    const selectedDateTime = new Date(`${date}T${time}`)
+    const now = new Date()
 
-    if (deadline < new Date()) {
-      toast.error("Deadline must be future")
+    // 🔥 STRICT VALIDATION
+    if (selectedDateTime <= now) {
+      toast.error("Please select a future date and time")
       return
     }
 
     addTask({
       title,
-      deadline,
+      deadline: selectedDateTime,
       priority,
       createdAt: new Date()
     })
@@ -45,6 +47,9 @@ const TaskForm = () => {
     setTime("")
     setPriority("Medium")
   }
+
+  // 🔥 TODAY DATE (for disabling past dates)
+  const today = new Date().toISOString().split("T")[0]
 
   return (
     <form
@@ -67,11 +72,12 @@ const TaskForm = () => {
         type="date"
         className="border p-2 w-full mb-2"
         value={date}
+        min={today}  // 🔥 BLOCK PAST DATES
         onChange={(e) => setDate(e.target.value)}
         required
       />
 
-      {/* TIME (clock picker) */}
+      {/* TIME */}
       <input
         type="time"
         className="border p-2 w-full mb-2"

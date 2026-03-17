@@ -5,16 +5,21 @@ const TaskList = () => {
 
   const { tasks } = useTasks()
 
-  return (
+  // 🔥 SORT TASKS (IMPORTANT LINE)
+  const sortedTasks = [...tasks].sort((a, b) => {
+    return a.completed - b.completed
+  })
 
+  return (
     <div>
 
       <h2 className="text-xl font-bold mb-3">
         All Tasks
       </h2>
 
-      {tasks.map((task, index) => (
-        <TaskCard key={index} task={task} />
+      {/* 🔥 USE sortedTasks HERE */}
+      {sortedTasks.map((task) => (
+        <TaskCard key={task._id} task={task} />
       ))}
 
     </div>
