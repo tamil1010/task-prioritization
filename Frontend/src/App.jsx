@@ -9,8 +9,7 @@ function App() {
   return (
     <TaskProvider>
       <Router>
-
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-[#020617] text-gray-300 font-[Poppins]">
 
           <Navbar />
 
@@ -20,7 +19,6 @@ function App() {
           </Routes>
 
         </div>
-
       </Router>
     </TaskProvider>
   )

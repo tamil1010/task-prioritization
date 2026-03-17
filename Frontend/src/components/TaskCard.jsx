@@ -10,7 +10,7 @@ const TaskCard = ({ task }) => {
 
   const [formData, setFormData] = useState({
     title: task.title,
-    deadline: task.deadline?.slice(0, 16), // 🔥 important
+    deadline: task.deadline?.slice(0, 16),
     priority: task.priority
   })
 
@@ -19,7 +19,6 @@ const TaskCard = ({ task }) => {
     return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`
   }
 
-  // 🔥 HANDLE CHANGE
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,24 +26,26 @@ const TaskCard = ({ task }) => {
     })
   }
 
-  // 🔥 SAVE EDIT
   const handleSave = () => {
     updateTask(task._id, formData)
     setIsEditing(false)
   }
 
-  // ✅ COMPLETE
   const handleComplete = () => {
     updateTask(task._id, { completed: true })
   }
 
   return (
-    <div className={`p-3 rounded mb-3 flex justify-between items-center ${
-      task.completed ? "bg-green-100 opacity-70" : "bg-gray-100"
-    }`}>
+    <div
+      className={`p-5 rounded-xl mb-4 flex justify-between items-center border transition duration-300 ${
+        task.completed
+          ? "bg-green-900/20 border-green-500/30 opacity-70"
+          : "bg-[#0F172A] border-[#06B6D4]/20 hover:shadow-[0_0_12px_#22D3EE]"
+      }`}
+    >
 
-      {/* LEFT */}
-      <div>
+      {/* LEFT SIDE */}
+      <div className="w-full pr-4">
 
         {isEditing ? (
           <>
@@ -53,7 +54,7 @@ const TaskCard = ({ task }) => {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="border p-1 mb-1 w-full"
+              className="w-full mb-2 p-2 rounded bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none text-sm"
             />
 
             {/* DEADLINE */}
@@ -62,7 +63,7 @@ const TaskCard = ({ task }) => {
               name="deadline"
               value={formData.deadline}
               onChange={handleChange}
-              className="border p-1 mb-1 w-full"
+              className="w-full mb-2 p-2 rounded bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none text-sm"
             />
 
             {/* PRIORITY */}
@@ -70,27 +71,41 @@ const TaskCard = ({ task }) => {
               name="priority"
               value={formData.priority}
               onChange={handleChange}
-              className="border p-1 mb-1 w-full"
+              className="w-full mb-2 p-2 rounded bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] outline-none text-sm"
             >
               <option>High</option>
               <option>Medium</option>
               <option>Low</option>
             </select>
 
+            {/* SAVE BUTTON */}
             <button
               onClick={handleSave}
-              className="text-blue-600 text-sm"
+              className="text-[#06B6D4] text-sm hover:underline"
             >
               Save
             </button>
           </>
         ) : (
           <>
-            <h3 className={`font-semibold ${task.completed ? "line-through" : ""}`}>
+            {/* TITLE */}
+            <h3
+              className={`font-semibold text-[#06B6D4] ${
+                task.completed ? "line-through opacity-60" : ""
+              }`}
+            >
               {task.title}
             </h3>
-            <p>Deadline: {formatDateTime(task.deadline)}</p>
-            <p>Priority: {task.priority}</p>
+
+            {/* DEADLINE */}
+            <p className="text-sm text-gray-400">
+              Deadline: {formatDateTime(task.deadline)}
+            </p>
+
+            {/* PRIORITY */}
+            <p className="text-sm text-gray-400">
+              Priority: {task.priority}
+            </p>
           </>
         )}
 
@@ -99,21 +114,18 @@ const TaskCard = ({ task }) => {
       {/* RIGHT ICONS */}
       <div className="flex gap-4 text-lg">
 
-        {/* COMPLETE */}
         <FaCheckCircle
-          className="text-green-500 cursor-pointer"
+          className="text-green-400 cursor-pointer hover:drop-shadow-[0_0_6px_#22D3EE] transition"
           onClick={handleComplete}
         />
 
-        {/* EDIT */}
         <FaEdit
-          className="text-blue-500 cursor-pointer"
+          className="text-blue-400 cursor-pointer hover:drop-shadow-[0_0_6px_#22D3EE] transition"
           onClick={() => setIsEditing(true)}
         />
 
-        {/* DELETE */}
         <FaTrash
-          className="text-red-500 cursor-pointer"
+          className="text-red-400 cursor-pointer hover:drop-shadow-[0_0_6px_#22D3EE] transition"
           onClick={() => deleteTask(task._id)}
         />
 
