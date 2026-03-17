@@ -2,10 +2,11 @@ import { useState } from "react"
 import TaskForm from "../components/TaskForm"
 import TopTasks from "../components/TopTasks"
 import TaskList from "../components/TaskList"
+import AISuggestion from "../components/AISuggestion"
 
 const Dashboard = () => {
 
-  const [view, setView] = useState("top")
+  const [view, setView] = useState("suggestions")
 
   return (
     <div className="p-6">
@@ -15,14 +16,25 @@ const Dashboard = () => {
       <div className="flex gap-3 mb-6">
 
         <button
-  onClick={() => setView("top")}
-  className={`px-5 py-2 rounded-lg transition ${
-    view === "top"
-      ? "bg-[#06B6D4] text-black shadow-[0_0_12px_#22D3EE]"
-      : "bg-[#0F172A] border border-[#06B6D4]/20 text-gray-300"
-  }`}
->
-          Top 3 Tasks
+          onClick={() => setView("suggestions")}
+          className={`px-5 py-2 rounded-lg transition ${
+            view === "suggestions"
+              ? "bg-[#06B6D4] text-black shadow-[0_0_12px_#22D3EE]"
+              : "bg-[#0F172A] border border-[#06B6D4]/20 text-gray-300"
+          }`}
+        >
+          Top 3 Suggestions
+        </button>
+
+        <button
+          onClick={() => setView("ai")}
+          className={`px-5 py-2 rounded-lg transition ${
+            view === "ai"
+              ? "bg-[#06B6D4] text-black shadow-[0_0_12px_#22D3EE]"
+              : "bg-[#0F172A] border border-[#06B6D4]/20 text-gray-300"
+          }`}
+        >
+          AI Suggestion
         </button>
 
         <button
@@ -38,7 +50,9 @@ const Dashboard = () => {
 
       </div>
 
-      {view === "top" ? <TopTasks /> : <TaskList />}
+      {view === "suggestions" ? <TopTasks /> : 
+       view === "ai" ? <AISuggestion /> : 
+       <TaskList />}
 
     </div>
   )
