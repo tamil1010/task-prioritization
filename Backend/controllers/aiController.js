@@ -1,18 +1,21 @@
-const Task = require("../models/Task")
-const priorityAlgorithm = require("../utils/priorityAlgorithm")
+const { getAISuggestion } = require("../services/aiService")
 
-exports.getTopTasks = async (req, res) => {
-
+const suggestTasks = async (req, res) => {
   try {
+    const { tasks } = req.body
 
-    const tasks = await Task.find()
+    if (!tasks || tasks.length === 0) {
+      return res.status(400).json({ message: "No tasks provided" })
+    }
 
-    const topTasks = priorityAlgorithm(tasks)
+    const suggestion = await getAISuggestion(tasks)
 
-    res.json(topTasks)
+    res.json({ suggestion })
 
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    console.error("AI Controller Error:", error)
+    res.status(500).json({ message: "AI suggestion failed" })
   }
-
 }
+
+module.exports = { suggestTasks }

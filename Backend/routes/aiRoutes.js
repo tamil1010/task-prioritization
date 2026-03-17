@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-const { getTopTasks } = require("../controllers/aiController")
+const { suggestTasks } = require("../controllers/aiController")
 
-router.get("/top", getTopTasks)
+router.post("/suggest", suggestTasks)
 
 module.exports = router
