@@ -5,11 +5,9 @@ import TaskCard from "./TaskCard"
 const TopTasks = () => {
 
   const { tasks } = useTasks()
-
   const topTasks = getTopTasks(tasks)
 
   return (
-
     <div className="mb-6">
 
       <h2 className="text-xl font-bold mb-3">
