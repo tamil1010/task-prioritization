@@ -1,18 +1,47 @@
+import { useState } from "react"
 import TaskForm from "../components/TaskForm"
-import TaskList from "../components/TaskList"
 import TopTasks from "../components/TopTasks"
+import TaskList from "../components/TaskList"
 
 const Dashboard = () => {
 
+  const [view, setView] = useState("top") // default = Top 3
+
   return (
+    <div className="p-4">
 
-    <div className="p-6 max-w-3xl mx-auto">
-
+      {/* TASK FORM */}
       <TaskForm />
 
-      <TopTasks />
+      {/* 🔥 BUTTONS */}
+      <div className="flex gap-3 mb-4">
 
-      <TaskList />
+        <button
+          onClick={() => setView("top")}
+          className={`px-4 py-2 rounded ${
+            view === "top"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-300 text-black"
+          }`}
+        >
+          Top 3 Tasks
+        </button>
+
+        <button
+          onClick={() => setView("all")}
+          className={`px-4 py-2 rounded ${
+            view === "all"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-300 text-black"
+          }`}
+        >
+          All Tasks
+        </button>
+
+      </div>
+
+      {/* 🔥 SWITCH VIEW */}
+      {view === "top" ? <TopTasks /> : <TaskList />}
 
     </div>
   )
