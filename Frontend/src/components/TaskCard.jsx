@@ -37,98 +37,90 @@ const TaskCard = ({ task }) => {
 
   return (
     <div
-      className={`p-5 rounded-xl mb-4 flex justify-between items-center border transition duration-300 ${
-        task.completed
-          ? "bg-green-900/20 border-green-500/30 opacity-70"
-          : "bg-[#0F172A] border-[#06B6D4]/20 hover:shadow-[0_0_12px_#22D3EE]"
+      className={`group px-3 py-2 flex items-center gap-3 transition-colors ${
+        task.completed ? "opacity-50" : "hover:bg-white/5"
       }`}
     >
+      {/* CHECKBOX */}
+      <div 
+        onClick={handleComplete}
+        className={`w-4 h-4 rounded-sm border flex items-center justify-center cursor-pointer flex-shrink-0 transition-colors ${
+          task.completed 
+            ? "bg-[#2383e2] border-[#2383e2]" 
+            : "border-white/30 hover:border-white/60 hover:bg-white/10"
+        }`}
+      >
+        {task.completed && (
+          <svg viewBox="0 0 14 14" className="w-[10px] h-[10px] fill-white">
+            <path d="M5.5 11.5L1.5 7.5L2.9 6.1L5.5 8.7L11.1 3.1L12.5 4.5L5.5 11.5Z" />
+          </svg>
+        )}
+      </div>
 
-      {/* LEFT SIDE */}
-      <div className="w-full pr-4">
+      <div className="flex-1 flex items-center justify-between min-w-0">
 
         {isEditing ? (
           <>
-            {/* TITLE */}
-            <input
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="w-full mb-2 p-2 rounded bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none text-sm"
-            />
-
-            {/* DEADLINE */}
-            <input
-              type="datetime-local"
-              name="deadline"
-              value={formData.deadline}
-              onChange={handleChange}
-              className="w-full mb-2 p-2 rounded bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none text-sm"
-            />
-
-            {/* PRIORITY */}
-            <select
-              name="priority"
-              value={formData.priority}
-              onChange={handleChange}
-              className="w-full mb-2 p-2 rounded bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] outline-none text-sm"
-            >
-              <option>High</option>
-              <option>Medium</option>
-              <option>Low</option>
-            </select>
-
-            {/* SAVE BUTTON */}
-            <button
-              onClick={handleSave}
-              className="text-[#06B6D4] text-sm hover:underline"
-            >
-              Save
-            </button>
+            {/* COMPACT EDIT MODE */}
+            <div className="flex items-center gap-2 w-full">
+              <input
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                autoFocus
+                className="flex-1 px-2 py-1 bg-transparent border-b border-white/20 focus:border-white/60 outline-none text-sm text-gray-200"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleSave()
+                  if (e.key === 'Escape') setIsEditing(false)
+                }}
+              />
+              <input
+                type="datetime-local"
+                name="deadline"
+                value={formData.deadline}
+                onChange={handleChange}
+                className="w-36 px-2 py-1 bg-transparent border-b border-white/20 focus:border-white/60 outline-none text-xs text-gray-400"
+              />
+            </div>
           </>
         ) : (
-          <>
+          <div 
+            className="flex items-center gap-4 w-full cursor-text"
+            onClick={() => setIsEditing(true)}
+          >
             {/* TITLE */}
-            <h3
-              className={`font-semibold text-[#06B6D4] ${
-                task.completed ? "line-through opacity-60" : ""
+            <span
+              className={`flex-1 truncate text-[15px] font-medium ${
+                task.completed ? "text-gray-500 line-through" : "text-gray-200"
               }`}
             >
               {task.title}
-            </h3>
+            </span>
 
             {/* DEADLINE */}
-            <p className="text-sm text-gray-400">
-              Deadline: {formatDateTime(task.deadline)}
-            </p>
+            <div className="flex items-center gap-2 group/date cursor-pointer text-xs text-gray-500">
+              <span className="group-hover/date:underline">
+                {task.deadline ? new Date(task.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Add Date'}
+              </span>
+            </div>
 
             {/* PRIORITY */}
             <p className="text-sm text-gray-400">
               Priority: {task.priority}
             </p>
-          </>
+          </div>
         )}
-
       </div>
 
-      {/* RIGHT ICONS */}
-      <div className="flex gap-4 text-lg">
-
-        <FaCheckCircle
-          className="text-green-400 cursor-pointer hover:drop-shadow-[0_0_6px_#22D3EE] transition"
-          onClick={handleComplete}
-        />
-
-        <FaEdit
-          className="text-blue-400 cursor-pointer hover:drop-shadow-[0_0_6px_#22D3EE] transition"
-          onClick={() => setIsEditing(true)}
-        />
-
+      {/* RIGHT HOVER ACTIONS */}
+      <div className="opacity-0 group-hover:opacity-100 flex gap-2 text-gray-500 transition-opacity">
         <FaTrash
-          className="text-red-400 cursor-pointer hover:drop-shadow-[0_0_6px_#22D3EE] transition"
-          onClick={() => deleteTask(task._id)}
+          className="w-3.5 h-3.5 cursor-pointer hover:text-red-400"
+          onClick={(e) => {
+            e.stopPropagation()
+            deleteTask(task._id)
+          }}
         />
-
       </div>
 
     </div>

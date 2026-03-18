@@ -121,70 +121,55 @@ const TaskForm = () => {
   const today = new Date().toISOString().split("T")[0]
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-[#0F172A] p-6 rounded-2xl border border-[#06B6D4]/20 shadow-lg mb-8"
-    >
-
-      <h2 className="text-lg font-semibold text-[#06B6D4] mb-4">
-        Add New Task
-      </h2>
-
-      {/* 🔹 TITLE */}
-      <input
-        type="text"
-        placeholder="e.g. Finish report tomorrow 5pm high"
-        className="w-full mb-4 p-3 rounded-lg bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] outline-none text-sm"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
-      {/* 🔹 DATE */}
-      <input
-        type="date"
-        className="w-full mb-4 p-3 rounded-lg bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] outline-none text-sm"
-        value={date}
-        min={today}
-        onChange={(e) => setDate(e.target.value)}
-      />
-
-      {/* 🔹 TIME */}
-      <input
-        type="time"
-        className="w-full mb-4 p-3 rounded-lg bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] outline-none text-sm"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-      />
-
-      {/* 🔹 PRIORITY */}
-      <select
-        className="w-full mb-4 p-3 rounded-lg bg-[#020617] border border-[#0EA5E9]/30 focus:border-[#22D3EE] outline-none text-sm"
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-      >
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option>
-      </select>
-
-      {/* 🔹 BUTTONS */}
-      <div className="flex gap-3">
-
-        <button className="px-6 py-2 rounded-lg bg-[#06B6D4] text-black font-medium hover:bg-[#22D3EE] hover:shadow-[0_0_12px_#22D3EE] transition">
-          Add Task
-        </button>
-
-        <button
-          type="button"
-          onClick={handleSmartAdd}
-          className="px-6 py-2 rounded-lg bg-[#0EA5E9] text-black font-medium hover:bg-[#22D3EE] hover:shadow-[0_0_12px_#22D3EE] transition"
-        >
-          🤖 Smart Add
-        </button>
-
+    <div className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-gray-300 w-full group">
+      <div className="w-4 flex justify-center text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">
+        +
       </div>
+      
+      <form onSubmit={handleSubmit} className="flex-1 flex gap-2 items-center min-w-0">
+        <input
+          type="text"
+          placeholder="Type a name..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="flex-1 bg-transparent border-none outline-none text-[15px] placeholder:text-gray-600 focus:placeholder:text-gray-400"
+        />
 
-    </form>
+        {title && (
+          <>
+            <input
+              type="date"
+              className="w-[110px] bg-transparent border-b border-white/20 focus:border-white/60 outline-none text-xs text-gray-400"
+              value={date}
+              min={today}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+            <input
+              type="time"
+              className="w-[80px] bg-transparent border-b border-white/20 focus:border-white/60 outline-none text-xs text-gray-400"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              required
+            />
+            <button 
+              type="submit"
+              className="px-3 py-1 bg-[#2383e2] hover:bg-[#1a66b2] text-white rounded text-xs font-medium cursor-pointer"
+            >
+              New
+            </button>
+            <button
+              type="button"
+              onClick={handleSmartAdd}
+              className="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded text-xs font-medium"
+              title="Smart Add (e.g. 'Finish report tomorrow 5pm high')"
+            >
+              🤖
+            </button>
+          </>
+        )}
+      </form>
+    </div>
   )
 }
 
