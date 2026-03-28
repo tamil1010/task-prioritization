@@ -121,54 +121,62 @@ const TaskForm = () => {
   const today = new Date().toISOString().split("T")[0]
 
   return (
-    <div className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-gray-300 w-full group">
-      <div className="w-4 flex justify-center text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">
-        +
-      </div>
-      
-      <form onSubmit={handleSubmit} className="flex-1 flex gap-2 items-center min-w-0">
-        <input
-          type="text"
-          placeholder="Type a name..."
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="flex-1 bg-transparent border-none outline-none text-[15px] placeholder:text-gray-600 focus:placeholder:text-gray-400"
-        />
+    <div className="max-w-4xl w-full mx-auto">
+      <div className="task-card rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:transform hover:translateY-[-4px] relative overflow-hidden">
+        
+        <div className="flex items-center gap-4 text-sm">
+          <div className="w-6 h-6 flex justify-center items-center text-[20px] rounded-full btn-primary">
+            ✨
+          </div>
+          
+          <form onSubmit={handleSubmit} className="flex-1 flex gap-4 items-center min-w-0">
+            <input
+              type="text"
+              placeholder="🚀 Type your amazing task..."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="flex-1 px-5 py-4 rounded-xl outline-none text-[16px] placeholder:text-gray-400 text-white transition-all duration-300"
+              style={{background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255,255,255,0.1)', color: '#E2E8F0'}}
+            />
 
-        {title && (
-          <>
-            <input
-              type="date"
-              className="w-[110px] bg-transparent border-b border-white/20 focus:border-white/60 outline-none text-xs text-gray-400"
-              value={date}
-              min={today}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-            <input
-              type="time"
-              className="w-[80px] bg-transparent border-b border-white/20 focus:border-white/60 outline-none text-xs text-gray-400"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              required
-            />
-            <button 
-              type="submit"
-              className="px-3 py-1 bg-[#2383e2] hover:bg-[#1a66b2] text-white rounded text-xs font-medium cursor-pointer"
-            >
-              New
-            </button>
-            <button
-              type="button"
-              onClick={handleSmartAdd}
-              className="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded text-xs font-medium"
-              title="Smart Add (e.g. 'Finish report tomorrow 5pm high')"
-            >
-              🤖
-            </button>
-          </>
-        )}
-      </form>
+            {title && (
+              <>
+                <input
+                  type="date"
+                  className="w-[140px] px-4 py-4 rounded-xl outline-none text-xs transition-all duration-300"
+                  style={{background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255,255,255,0.1)', color: '#E2E8F0'}}
+                  value={date}
+                  min={today}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
+                <input
+                  type="time"
+                  className="w-[100px] px-4 py-4 rounded-xl outline-none text-xs transition-all duration-300"
+                  style={{background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255,255,255,0.1)', color: '#E2E8F0'}}
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  required
+                />
+                <button 
+                  type="submit"
+                  className="btn-primary px-8 py-4 text-sm font-bold cursor-pointer"
+                >
+                  🎯 Add Task
+                </button>
+                {/* <button
+                  type="button"
+                  onClick={handleSmartAdd}
+                  className="btn-secondary px-8 py-4 text-sm font-bold cursor-pointer"
+                  title="Smart Add (e.g. 'Finish report tomorrow 5pm high')"
+                >
+                  🤖 AI Magic
+                </button> */}
+              </>
+            )}
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

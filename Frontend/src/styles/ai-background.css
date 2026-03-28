@@ -1,0 +1,194 @@
+/* AI-Themed Background Animations */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(10px) rotate(-3deg);
+  }
+}
+
+@keyframes float-delay-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) rotate(3deg);
+  }
+  50% {
+    transform: translateY(10px) translateX(-5px) rotate(-2deg);
+  }
+  75% {
+    transform: translateY(-5px) translateX(15px) rotate(1deg);
+  }
+}
+
+@keyframes float-delay-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-25px) translateX(-10px) rotate(-4deg);
+  }
+  40% {
+    transform: translateY(15px) translateX(5px) rotate(2deg);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-15px) rotate(-1deg);
+  }
+  80% {
+    transform: translateY(20px) translateX(10px) rotate(3deg);
+  }
+}
+
+@keyframes float-delay-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-18px) translateX(12px) rotate(4deg);
+  }
+  60% {
+    transform: translateY(12px) translateX(-8px) rotate(-3deg);
+  }
+  90% {
+    transform: translateY(-8px) translateX(6px) rotate(1deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes binary-rain {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Apply animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float-delay-1 8s ease-in-out infinite;
+}
+
+.animate-float-delay-2 {
+  animation: float-delay-2 7s ease-in-out infinite;
+}
+
+.animate-float-delay-3 {
+  animation: float-delay-3 9s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-binary-rain {
+  animation: binary-rain 3s linear infinite;
+}
+
+/* Neural network connections animation */
+@keyframes neural-connection {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.neural-connection {
+  stroke-dasharray: 100;
+  animation: neural-connection 3s ease-in-out infinite;
+}
+
+/* Circuit board pulse effect */
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.circuit-board {
+  animation: circuit-pulse 4s ease-in-out infinite;
+}
+
+/* AI brain core animation */
+@keyframes brain-core {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.05;
+  }
+  25% {
+    transform: scale(1.1) rotate(90deg);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.08;
+  }
+  75% {
+    transform: scale(1.1) rotate(270deg);
+    opacity: 0.12;
+  }
+}
+
+.brain-core {
+  animation: brain-core 10s linear infinite;
+}
+
+/* Binary matrix effect */
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.binary-matrix {
+  animation: matrix-fall 5s linear infinite;
+}

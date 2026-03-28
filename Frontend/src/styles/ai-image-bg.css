@@ -1,0 +1,363 @@
+/* AI-Themed Background Animations */
+
+/* Slow rotation animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Background image zoom animation */
+@keyframes zoom-slow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Slide diagonal animation */
+@keyframes slide-diagonal {
+  0% {
+    transform: translate(-100px, -100px);
+  }
+  50% {
+    transform: translate(100px, 100px);
+  }
+  100% {
+    transform: translate(-100px, -100px);
+  }
+}
+
+/* Slide diagonal reverse animation */
+@keyframes slide-diagonal-reverse {
+  0% {
+    transform: translate(100px, 100px);
+  }
+  50% {
+    transform: translate(-100px, -100px);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+/* Floating orb animations */
+@keyframes float-orb-1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-40px, 30px) rotate(90deg);
+  }
+  50% {
+    transform: translate(20px, -40px) rotate(180deg);
+  }
+  75% {
+    transform: translate(30px, 20px) rotate(270deg);
+  }
+}
+
+@keyframes float-orb-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-25px, 35px) scale(1.2);
+  }
+}
+
+/* Particle field animation */
+@keyframes particle-field {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Wave animations */
+@keyframes wave-1 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes wave-2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes wave-3 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Orbit animation for nodes */
+@keyframes orbit {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+/* Floating particle animation */
+@keyframes float-particle {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(50px);
+    opacity: 0;
+  }
+}
+
+/* Pulse line animation */
+@keyframes pulse-line {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Data flow animation */
+@keyframes data-flow {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100px, 100px);
+    opacity: 0;
+  }
+}
+
+/* Apply animations */
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 15s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-zoom-slow {
+  animation: zoom-slow 8s ease-in-out infinite;
+}
+
+.animate-slide-diagonal {
+  animation: slide-diagonal 12s ease-in-out infinite;
+}
+
+.animate-slide-diagonal-reverse {
+  animation: slide-diagonal-reverse 12s ease-in-out infinite;
+}
+
+.animate-float-orb-1 {
+  animation: float-orb-1 15s ease-in-out infinite;
+}
+
+.animate-float-orb-2 {
+  animation: float-orb-2 18s ease-in-out infinite;
+}
+
+.animate-float-orb-3 {
+  animation: float-orb-3 12s ease-in-out infinite;
+}
+
+.animate-particle-field {
+  animation: particle-field 6s ease-in-out infinite;
+}
+
+.animate-wave-1 {
+  animation: wave-1 8s linear infinite;
+}
+
+.animate-wave-2 {
+  animation: wave-2 10s linear infinite;
+}
+
+.animate-wave-3 {
+  animation: wave-3 12s linear infinite;
+}
+
+.animate-orbit {
+  animation: orbit 10s linear infinite;
+}
+
+.animate-float-particle {
+  animation: float-particle 5s ease-in-out infinite;
+}
+
+.animate-pulse-line {
+  animation: pulse-line 3s ease-in-out infinite;
+}
+
+.animate-data-flow {
+  animation: data-flow 4s linear infinite;
+}
+
+/* Neural connection glow effect */
+@keyframes neural-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+  }
+}
+
+.neural-connection {
+  animation: neural-glow 2s ease-in-out infinite;
+}
+
+/* Brain core breathing effect */
+@keyframes brain-breathe {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
+.brain-core {
+  animation: brain-breathe 3s ease-in-out infinite;
+}
+
+/* Particle trail effect */
+@keyframes particle-trail {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.particle-trail {
+  animation: particle-trail 2s ease-out infinite;
+}
+
+/* Network pulse effect */
+@keyframes network-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.3;
+  }
+}
+
+.network-container {
+  animation: network-pulse 6s ease-in-out infinite;
+}
+
+/* Data stream animation */
+@keyframes data-stream {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.data-stream {
+  animation: data-stream 8s linear infinite;
+}

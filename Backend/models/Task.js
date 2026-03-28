@@ -25,6 +25,30 @@ const taskSchema = new mongoose.Schema({
     default: false
   },
 
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
+
+  collaborators: [{
+    type: String,
+    trim: true,
+    lowercase: true
+  }],
+
+  pendingCollaborators: [{
+    type: String,
+    trim: true,
+    lowercase: true
+  }],
+
+  rejectedCollaborators: [{
+    type: String,
+    trim: true,
+    lowercase: true
+  }],
+
   createdAt: {
     type: Date,
     default: Date.now

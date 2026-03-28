@@ -1,30 +1,63 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
-    <div className="flex justify-between items-center px-8 py-4 bg-[#020617] border-b border-[#06B6D4]/20 backdrop-blur-md">
+    <div className="navbar flex justify-between items-center px-8 py-4 relative overflow-hidden">
+      <div className="flex justify-between items-center w-full">
+        <h1 className="text-3xl font-bold tracking-wide text-title">
+          Task Master Pro
+        </h1>
 
-  <h1 className="text-xl font-semibold text-[#06B6D4] tracking-wide">
-    Task Manager
-  </h1>
+        <div className="flex gap-4 items-center">
+          {user ? (
+            <>
+              <Link to="/">
+                <button className="btn-primary px-6 py-3 font-bold">
+                  🚀 Dashboard
+                </button>
+              </Link>
+              <Link to="/calendar">
+                <button className="btn-secondary px-6 py-3 font-bold">
+                  📅 Calendar
+                </button>
+              </Link>
+              <div className="flex items-center gap-3 ml-4 pl-4" style={{borderLeft: '1px solid rgba(255,255,255,0.1)'}}>
+                <span className="text-sm font-medium text-secondary">👋 Hello, {user.name?.split(' ')[0]}</span>
+                <button 
+                  onClick={handleLogout} 
+                  className="px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105" style={{background: '#EF4444', color: '#FFE4E6'}}
+                >
+                  🚪 Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="btn-secondary px-6 py-3 font-bold">
+                  🔐 Log In
+                </button>
+              </Link>
+              <Link to="/signup">
+                <button className="btn-primary px-6 py-3 font-bold">
+                  ✨ Sign Up
+                </button>
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  <div className="flex gap-4">
-
-    <Link to="/">
-      <button className="px-4 py-1.5 rounded-lg bg-[#06B6D4] text-black font-medium hover:bg-[#22D3EE] hover:shadow-[0_0_12px_#22D3EE] transition">
-        Dashboard
-      </button>
-    </Link>
-
-    <Link to="/calendar">
-      <button className="px-4 py-1.5 rounded-lg bg-[#0EA5E9] text-black font-medium hover:bg-[#22D3EE] hover:shadow-[0_0_12px_#22D3EE] transition">
-        Calendar
-      </button>
-    </Link>
-
-  </div>
-</div>
-  )
-}
-
-export default Navbar
+export default Navbar;
