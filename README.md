@@ -8,27 +8,35 @@ The project demonstrates full-stack development, RESTful API design, database in
 
 # 🚀 Key Features
 **Smart Task Prioritization**
+
 AI analyzes task descriptions and suggests priority levels.
 
 **Task Management**
+
 Create, update, delete, and track tasks efficiently.
 
 **Deadline & Status Tracking**
+
 Monitor task progress and completion status.
 
 **Collaboration System**
+
 Invite collaborators to tasks and manage shared work.
 
 **Invitation Handling**
+
 Users can accept or reject collaboration requests.
 
 **Dashboard Overview**
+
 View active tasks, completed tasks, and priority levels.
 
 **MongoDB Data Storage**
+
 Tasks, users, and collaboration data are stored persistently.
 
 **Modern UI**
+
 Clean productivity interface built with React and modern styling.
 
 ---
@@ -40,8 +48,12 @@ The system integrates with Groq/OpenAI APIs to analyze task descriptions and sug
 Example:
 Input:
 "Prepare project presentation for tomorrow"
+
 AI Suggested Priority:
+
 **High**
+
+---
 
 # 🛠 Tech Stack
 
@@ -70,7 +82,7 @@ AI Suggested Priority:
 ---
 
 # 📁 Project Structure
-`
+```
 task-prioritization/
 │
 ├── backend/
@@ -111,7 +123,7 @@ task-prioritization/
 │   └── vite.config.js
 │
 └── README.md
-`
+```
 
 ---
 
@@ -137,42 +149,42 @@ cd task-prioritization-agent
 # 2️⃣ Backend Setup
 
 **Navigate to the backend folder.**
-`
+```
 cd backend
 npm install
-`
+```
 **Create a .env file:**
-`
+```
 MONGO_URI=mongodb://127.0.0.1:27017/taskai
 PORT=5000
 JWT_SECRET=your_secret_key
 GROQ_API_KEY=your_api_key
-`
+```
 **Start the backend server:**
 `
 npm start
 `
 
 **Backend runs on:**
-`
-http://localhost:5000
-`
+
+[http://localhost:5000](http://localhost:5000)
+
 
 ---
 
 # 3️⃣ Frontend Setup
 
 **Navigate to the frontend folder.**
-`
+```
 cd frontend
 npm install
 npm run dev
-`
+```
 
 **Frontend runs on:**
-`
-http://localhost:5173
-`
+
+[http://localhost:5173](http://localhost:5173)
+
 
 ---
 
@@ -191,6 +203,7 @@ http://localhost:5173
 # 🔐 Authentication
 
 The application uses JWT authentication to protect task-related endpoints.
+
 **Each request must include:**
 `
 Authorization: Bearer <token>
